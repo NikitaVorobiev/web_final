@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Converter</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>Конвертер валют</h1>
+<form th:method="post" th:action="@{/convert}" th:object="${converterdto}">
+    <select name="curr1" th:field="*{curr1}">
+        <option value="0">AUD(Австралийский доллар)</option>
+        <option value="1">AZN(Азербайджанский манат)</option>
+        <option value="2">GBP(Фунт стерлингов Соединенного королевства)</option>
+        <option value="3">AMD(Армянских драмов)</option>
+        <option value="4">BYN(Белорусский рубль)</option>
+        <option value="5">BGN(Болгарский лев)</option>
+        <option value="6">BRL(Бразильский реал)</option>
+        <option value="7">HUF(Венгерских форинтов)</option>
+        <option value="8">HKD(Гонконгских долларов)</option>
+        <option value="9">DKK(Датских крон)</option>
+        <option value="10">USD(Доллар США)</option>
+        <option value="11">EUR(Евро)</option>
+        <option value="12">INR(Индийских рупий)</option>
+        <option value="13">KZT(Казахстанских тенге)</option>
+        <option value="14">CAD(Канадский доллар)</option>
+        <option value="15">KGS(Киргизских сомов)</option>
+        <option value="16">CNY(Китайских юаней)</option>
+        <option value="17">MDL(Молдавских леев)</option>
+        <option value="18">NOK(Норвежских крон)</option>
+        <option value="19">PLN(Польский злотый)</option>
+        <option value="20">RON(Румынский лей)</option>
+        <option value="21">XDR(СДР (специальные права заимствования))</option>
+        <option value="22">SGD(Сингапурский доллар)</option>
+        <option value="23">TJS(Таджикских сомони)</option>
+        <option value="24">TRY(Турецких лир)</option>
+        <option value="25">TMT(Новый туркменский манат)</option>
+        <option value="26">UZS(Узбекских сумов)</option>
+        <option value="27">UAH(Украинских гривен)</option>
+        <option value="28">CZK(Чешских крон)</option>
+        <option value="29">SEK(Шведских крон)</option>
+        <option value="30">CHF(Швейцарский франк)</option>
+        <option value="31">ZAR(Южноафриканских рэндов)</option>
+        <option value="32">KRW(Вон Республики Корея)</option>
+        <option value="33">JPY(Японских иен)</option>
+        <option value="34">RUB(Российский рубль)</option>
+    </select>
+    <select name="curr2" th:field="*{curr2}">
+        <option value="0">AUD(Австралийский доллар)</option>
+        <option value="1">AZN(Азербайджанский манат)</option>
+        <option value="2">GBP(Фунт стерлингов Соединенного королевства)</option>
+        <option value="3">AMD(Армянских драмов)</option>
+        <option value="4">BYN(Белорусский рубль)</option>
+        <option value="5">BGN(Болгарский лев)</option>
+        <option value="6">BRL(Бразильский реал)</option>
+        <option value="7">HUF(Венгерских форинтов)</option>
+        <option value="8">HKD(Гонконгских долларов)</option>
+        <option value="9">DKK(Датских крон)</option>
+        <option value="10">USD(Доллар США)</option>
+        <option value="11">EUR(Евро)</option>
+        <option value="12">INR(Индийских рупий)</option>
+        <option value="13">KZT(Казахстанских тенге)</option>
+        <option value="14">CAD(Канадский доллар)</option>
+        <option value="15">KGS(Киргизских сомов)</option>
+        <option value="16">CNY(Китайских юаней)</option>
+        <option value="17">MDL(Молдавских леев)</option>
+        <option value="18">NOK(Норвежских крон)</option>
+        <option value="19">PLN(Польский злотый)</option>
+        <option value="20">RON(Румынский лей)</option>
+        <option value="21">XDR(СДР (специальные права заимствования))</option>
+        <option value="22">SGD(Сингапурский доллар)</option>
+        <option value="23">TJS(Таджикских сомони)</option>
+        <option value="24">TRY(Турецких лир)</option>
+        <option value="25">TMT(Новый туркменский манат)</option>
+        <option value="26">UZS(Узбекских сумов)</option>
+        <option value="27">UAH(Украинских гривен)</option>
+        <option value="28">CZK(Чешских крон)</option>
+        <option value="29">SEK(Шведских крон)</option>
+        <option value="30">CHF(Швейцарский франк)</option>
+        <option value="31">ZAR(Южноафриканских рэндов)</option>
+        <option value="32">KRW(Вон Республики Корея)</option>
+        <option value="33">JPY(Японских иен)</option>
+        <option value="34">RUB(Российский рубль)</option>
+    </select>
+    <p>Введите сумму для конвертации<input type="text" th:field="*{curr1value}" id="curr1_value"/>
+    <p>Результат конвертации<input type="text" th:field="*{curr2value}" id="curr2_value" disabled/>
+    <p><input type="submit" value="Конвертировать" />
+    <p>
+    <table>
+        <tbody>
+        <tr>
+            <td>Дата проведения операции</td>
+            <td>Валюта, из которой конвертировали</td>
+            <td>Валюта, в которую конвертировали</td>
+            <td>Сумма, которую конвертировали</td>
+            <td>Результат конвертации</td>
+        </tr>
+        <tr th:each="nodeInfo : ${historyDto}">
+            <td th:text="${nodeInfo.date}"></td>
+            <td th:text="${nodeInfo.curr1}"></td>
+            <td th:text="${nodeInfo.curr2}"></td>
+            <td th:text="${nodeInfo.value1}"></td>
+            <td th:text="${nodeInfo.value2}"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>
